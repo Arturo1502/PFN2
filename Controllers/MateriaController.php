@@ -26,15 +26,7 @@ class MateriaController
         $usuario = new Materia;
         $usuarioPar = $usuario->find($id);
 
-        if ($usuarioPar) {
-            $userData = "Nombre: " . $usuarioPar['nombre'] . "<br>";
-            $userData = "Direccion: " . $usuarioPar['direccion'] . "<br>";
-            $userData = "Telefono: " . $usuarioPar['telefono'] . "<br>";
-
-            echo "Cliente: $userData";
-        } else {
-            echo "Cliente no encontrado";
-        }
+        require_once $_SERVER['DOCUMENT_ROOT'] . 'Views/maestros.php';
     }
 
     // actializar un registro

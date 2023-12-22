@@ -20,11 +20,10 @@ class Materia
     public function all()
     {
 
-        $query = "SELECT usuarios.id, GROUP_CONCAT(materias.materia SEPARATOR ', ') AS materia, usuarios.nombre, usuarios.apellido
+        $query = "SELECT usuarios.id, materias.materia, usuarios.nombre, usuarios.apellido
         FROM usuarios
-        JOIN materias ON materias.usuario_id = usuarios.id
-        WHERE usuarios.rol_id = 2
-        GROUP BY usuarios.id";
+        RIGHT JOIN materias ON materias.usuario_id = usuarios.id
+        GROUP BY usuario_id";
 
 
         try {

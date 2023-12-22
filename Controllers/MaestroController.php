@@ -14,6 +14,8 @@ class MaestroController
 
         $data = $clientes->all();
 
+        $materias = $clientes->materias();
+
         require_once $_SERVER['DOCUMENT_ROOT'] . '/Views/tablaMaestros.php';
     }
 
@@ -47,12 +49,16 @@ class MaestroController
     public function update()
     {
         $id = $_GET['id'];
-        $correo = $_POST['correo'];
-        $hash = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $rol_id = $_POST['rol'];
+        
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $direccion = $_POST['direccion'];
+        $nacimiento = $_POST['nacimiento'];
+        $claseAsignada = $_POST['claseasignada'];
+
 
         $cliente = new Maestro;
-        $cliente->update($id, $correo, $hash, $rol_id);
+        $cliente->update($nombre, $apellido, $direccion, $nacimiento, $claseAsignada,$id);
 
         header('location: ../index.php?controller=MaestroController&action=index');
     }

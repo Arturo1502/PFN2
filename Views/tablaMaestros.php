@@ -22,11 +22,9 @@
         text-align: left;
     }
 
-    body{
+    body {
         background-color: #F5F6FA;
     }
-
-    
 </style>
 
 <body>
@@ -38,7 +36,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-12">
-                
+
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Nuevo Usuario
                 </button>
@@ -89,9 +87,7 @@
                                 <option value="2">Maestro</option>
                             </select>
                     </div>
-                    <!-- <label for="">asignatura_id
-                        <input type="text" name="asignatura_id">
-                    </label> -->
+
                     <div class="mb-3">
                         <button type="submit" class="btn btn-secondary">enviar</button>
                     </div>
@@ -131,8 +127,64 @@
                             <td><?= $usuario['nacimiento'] ?></td>
                             <td><?= $usuario['materia'] ?></td>
                             <td>
-                                <a href="../index.php?controller=UserController&action=updateView&id=<?= $usuario['id'] ?>" class="fa-regular fa-pen-to-square" style="color: green;"></a>
-                                <a href="../index.php?controller=UserController&action=destroy&id=<?= $usuario['id'] ?>" class="fa-solid fa-trash-can " style="color: rgb(170, 11, 11);;"></a>
+                                <button type="button" class="fa-regular fa-pen-to-square" style="color: green;" data-bs-toggle="modal" data-bs-target="#editModal">
+                                </button>
+
+                                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editModalLabel">Editar Maestro</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <form action="../index.php?controller=MaestroController&action=update&id=<?= $usuario['id'] ?>" method="post">
+                                                    <div class="mb-3">
+                                                        <label for="email">Correo Electronico</label>
+                                                        <input type="text" name="email" class="form-control" placeholder=<?= $usuario['email'] ?> value="<?= $usuario['email'] ?>" disabled>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="mb-3">
+                                                            <label for="nombre">Nombre(s)</label>
+                                                            <input type="text" name="nombre" class="form-control" placeholder="Ingresa nombre(s) ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="apellido">Apellidos(s)</label>
+                                                        <input type="text" name="apellido" class="form-control" placeholder="Ingresa apellido(s)">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="direccion">Direccion</label>
+                                                        <input type="text" name="direccion" class="form-control" placeholder="Direccion">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="fechaNacimiento"><strong>Fecha de Nacimiento</strong></label>
+                                                        <input type="date" name='nacimiento' class="form-control" id="nacimiento">
+                                                    </div>
+
+                                                    <select name="claseasignada" class="form-select">
+                                                        <option value="" disabled selected>Clase asignada</option>
+                                                        <?php foreach ($materias as $materia) : ?>
+                                                            <option value="<?= $materia['id'] ?>"><?= $materia['materia']?></option>
+                                                        <?php endforeach; ?>
+
+
+                                                    </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <button type="submit" class="btn btn-secondary">enviar</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="../index.php?controller=MaestroController&action=destroy&id=<?= $usuario['id'] ?>" class="fa-solid fa-trash-can " style="color: rgb(170, 11, 11);;"></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -160,5 +212,3 @@
 </body>
 
 </html>
-
-<!-- <a href="../index.php?controller=AuthController&action=create" class="btn btn-secondary">Nuevo Usuario</a> -->

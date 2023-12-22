@@ -38,6 +38,23 @@ class Maestro
         }
     }
 
+    public function materias()
+    {
+
+        $query = 'SELECT * FROM materias';
+
+
+        try {
+            $stm = $this->conexion->prepare($query);
+            $stm->execute();
+            $rs = $stm->fetchAll(\PDO::FETCH_ASSOC);
+
+            return $rs;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
     // encontrar el usuario donde el id se igual a ?
     public function find($id)
     {
@@ -56,13 +73,13 @@ class Maestro
     }
 
     //actualizar un usuario
-    public function update($id, $correo, $password, $rol_id)
+    public function update($nombre, $apellido, $direccion, $nacimiento,$id)
     {
-        $query = "UPDATE usuarios SET correo = ?, password = ?, rol_id = ? WHERE id = ?";
+        $query = "UPDATE `usuarios` SET `nombre`=?,`apellido`=?,`direccion`=?,`nacimiento`=? WHERE id = ?";
 
         try {
             $stm = $this->conexion->prepare($query);
-            $stm->execute([$correo, $password, $rol_id, $id]);
+            $stm->execute([$nombre, $apellido, $direccion, $nacimiento,$id]);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -72,7 +89,7 @@ class Maestro
     public function delete($id)
     {
 
-        $query = 'DELETE FROM usuarios WHERE id = ?';
+        $query = 'DELETE FROM `usuarios` WHERE id = ?';
 
         try {
             $stm = $this->conexion->prepare($query);
