@@ -27,5 +27,7 @@ if (isset($_GET['action']) && isset($_GET['controller'])) {
     $controller = new $_GET['controller'];
 
     $controller->{$_GET['action']}();
+} else {
+    require_once './Views/dashboard.php';
 }
 require_once  $_SERVER['DOCUMENT_ROOT'] . '/Views/templates/footer.php';
