@@ -17,12 +17,16 @@
 
     .nav {
         background-color: #007bff;
-        border: 1px solid gray;
+        border: 10px solid red;
         height: 40px;
         text-align: left;
     }
 
-    /* Estilos adicionales... */
+    body{
+        background-color: #F5F6FA;
+    }
+
+    
 </style>
 
 <body>
@@ -34,9 +38,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-12">
-                <!-- <button href="../index.php?controller=AuthController&action=create" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Nuevo Usuario
-                </button> -->
+                
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Nuevo Usuario
                 </button>

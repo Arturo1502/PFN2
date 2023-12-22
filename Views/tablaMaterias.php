@@ -22,7 +22,11 @@
         text-align: left;
     }
 
-    /* Estilos adicionales... */
+    body{
+        background-color: #F5F6FA;
+    }
+
+
 </style>
 
 <body>
